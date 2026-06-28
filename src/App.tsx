@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
 import {
   Check, CheckCircle2, Gift, Instagram, Menu, Phone, Send,
   X, XCircle,
@@ -35,41 +35,30 @@ function Photo({ index, className = '' }: { index: number, className?: string })
   return <div className={`event-photo ${className}`} style={{ backgroundImage: `url(${realPhotos[index % realPhotos.length]})` }} />
 }
 
-function LeadForm() {
-  const [error, setError] = useState('')
-  const [sent, setSent] = useState(false)
-
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    const name = data.get('name')?.toString().trim()
-    const phone = data.get('phone')?.toString().trim()
-    const consent = data.get('consent')
-
-    if (!name || !phone || !consent) {
-      setError('Укажите имя, телефон и подтвердите согласие.')
-      return
-    }
-
-    setError('')
-    setSent(true)
-  }
-
+function LeadContacts() {
   return <section id="request" className="section"><div className="container lead-card">
     <div className="lead-copy">
-      <Title center={false}>Оставьте заявку, и мы поможем <span>организовать праздник без суеты</span></Title>
-      <p>Напишите, какой праздник планируете, и мы свяжемся с вами, чтобы обсудить формат, дату и детали.</p>
+      <Title center={false}>Напишите нам, и мы поможем <span>организовать праздник без суеты</span></Title>
+      <p>Расскажите, какой праздник планируете, а мы подскажем формат, свободные даты и детали организации.</p>
       <Photo index={5} />
     </div>
-    {sent ? <div className="success"><CheckCircle2 /><h3>Спасибо, мы свяжемся с вами</h3><p>Заявка принята. Скоро обсудим удобную дату, формат и все детали праздника.</p></div> :
-    <form onSubmit={submit} noValidate>
-      <input name="name" placeholder="Ваше имя" aria-label="Ваше имя" />
-      <input name="phone" placeholder="Телефон" aria-label="Телефон" />
-      <textarea name="comment" placeholder="Расскажите, какой праздник планируете" aria-label="Комментарий" rows={5} />
-      <label className="consent"><input name="consent" type="checkbox" /> Согласен(а) на обработку персональных данных</label>
-      {error && <p className="form-error">{error}</p>}
-      <button className="btn wide" type="submit">Отправить заявку</button>
-    </form>}
+    <div className="contact-panel">
+      <p className="contact-eyebrow">Напишите нам удобным способом</p>
+      <div className="contact-list">
+        <a className="contact-link" href="https://t.me/misterteen" target="_blank" rel="noreferrer">
+          <Send />
+          <span><b>Написать в Telegram</b><small>@misterteen</small></span>
+        </a>
+        <a className="contact-link" href="https://www.instagram.com/mrteen?igsh=MmJ0aWp2NTN4d2cy" target="_blank" rel="noreferrer">
+          <Instagram />
+          <span><b>Написать в Instagram</b><small>@mrteen</small></span>
+        </a>
+        <a className="contact-link" href="tel:+79529447419">
+          <Phone />
+          <span><b>+7 (952) 944-74-19</b><small>Позвонить и обсудить праздник</small></span>
+        </a>
+      </div>
+    </div>
   </div></section>
 }
 
@@ -95,6 +84,6 @@ export default function App() {
     <section id="gallery" className="section"><div className="container gallery-card"><Title>Посмотрите, какой может быть <span>атмосфера праздника</span></Title><div className="gallery-grid">{formats.map((_, i) => <Photo index={i} key={i} />)}</div></div></section>
 
     <section className="section compact"><div className="container"><Title>Подойдёт, если вы хотите не просто праздник, <span>а событие</span></Title><div className="audience">{audience.map(([Icon, text]) => <article key={text as string}><Icon /><p>{text as string}</p></article>)}</div></div></section>
-    <LeadForm />
+    <LeadContacts />
   </main><footer><div className="container footer"><Logo /><div className="socials"><a href="https://t.me/misterteen" aria-label="Telegram" target="_blank" rel="noreferrer"><Send /></a><a href="https://www.instagram.com/mrteen?igsh=MmJ0aWp2NTN4d2cy" aria-label="Instagram" target="_blank" rel="noreferrer"><Instagram /></a></div><div><a href="tel:+79529447419"><b>+7 (952) 944-74-19</b></a><p>Новосибирск</p></div></div></footer></>
 }

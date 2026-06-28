@@ -10,20 +10,13 @@ describe('Mister Teen landing interactions', () => {
     expect(screen.getByRole('navigation', { name: /мобильная навигация/i })).toBeVisible()
   })
 
-  it('requires name, phone, and consent before accepting the feedback form', async () => {
+  it('shows direct contact options instead of a feedback form', () => {
     render(<App />)
-    await userEvent.click(screen.getByRole('button', { name: /отправить заявку/i }))
-    expect(screen.getByText(/укажите имя, телефон и подтвердите согласие/i)).toBeVisible()
-  })
-
-  it('shows an inline thank-you state after valid feedback submission', async () => {
-    render(<App />)
-    await userEvent.type(screen.getByRole('textbox', { name: /ваше имя/i }), 'Анна')
-    await userEvent.type(screen.getByRole('textbox', { name: /телефон/i }), '+7 999 123-45-67')
-    await userEvent.type(screen.getByRole('textbox', { name: /комментарий/i }), 'Интересует день рождения на 10 человек')
-    await userEvent.click(screen.getByRole('checkbox', { name: /обработку персональных данных/i }))
-    await userEvent.click(screen.getByRole('button', { name: /отправить заявку/i }))
-    expect(screen.getByText(/спасибо, мы свяжемся с вами/i)).toBeVisible()
+    expect(screen.getByText(/напишите нам удобным способом/i)).toBeVisible()
+    expect(screen.getByRole('link', { name: /написать в telegram/i })).toHaveAttribute('href', 'https://t.me/misterteen')
+    expect(screen.getByRole('link', { name: /написать в instagram/i })).toHaveAttribute('href', 'https://www.instagram.com/mrteen?igsh=MmJ0aWp2NTN4d2cy')
+    expect(screen.getAllByRole('link', { name: /\+7 \(952\) 944-74-19/i })[1]).toHaveAttribute('href', 'tel:+79529447419')
+    expect(screen.queryByRole('textbox', { name: /ваше имя/i })).not.toBeInTheDocument()
   })
 
   it('offers the bonus certificate as a downloadable file', () => {

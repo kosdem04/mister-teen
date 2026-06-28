@@ -96,14 +96,15 @@ h1 span { color: #ff4b12; }
 .lead-copy .section-title { max-width:460px; }
 .lead-copy > p { max-width:420px; color:#666; font-size:13px; }
 .lead-copy .event-photo { height:200px; margin-top:20px; }
-.lead-card form { padding:36px; display:grid; gap:10px; }
-.lead-card input:not([type=checkbox]), .lead-card select, .lead-card textarea { width:100%; border:1px solid #e7ded8; border-radius:10px; padding:13px 14px; background:white; }
-.lead-card textarea { min-height: 132px; resize: vertical; }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.consent { display:flex; gap:9px; align-items:flex-start; font-size:11px; color:#666; }
-.form-error { color:#c93800; background:#fff1e8; padding:10px 12px; border-radius:10px; margin:0; font-size:12px; }
-.success { padding:55px; display:grid; place-content:center; text-align:center; }
-.success svg { color:#ff4b12; width:60px; height:60px; margin:auto; }
+.contact-panel { padding:36px; display:grid; align-content:center; gap:18px; background:#fff8f1; }
+.contact-eyebrow { margin:0; color:#ff4b12; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; }
+.contact-list { display:grid; gap:12px; }
+.contact-link { display:flex; align-items:center; gap:14px; padding:18px; border:1px solid #f0e6df; border-radius:14px; background:white; box-shadow:0 10px 24px rgb(40 20 0 / 5%); transition:.2s; }
+.contact-link:hover { transform:translateY(-2px); box-shadow:0 14px 28px rgb(40 20 0 / 9%); }
+.contact-link svg { width:24px; height:24px; color:#ff4b12; flex:0 0 auto; }
+.contact-link span { display:grid; gap:3px; }
+.contact-link b { font-size:15px; }
+.contact-link small { color:#666; font-size:12px; }
 footer { border-top:1px solid #f0e6df; padding:30px 0 20px; }
 .footer { display:flex; justify-content:space-between; align-items:center; }
 .footer .logo img { height: 112px; }
@@ -173,8 +174,8 @@ footer { border-top:1px solid #f0e6df; padding:30px 0 20px; }
   .audience { grid-template-columns:repeat(2,1fr); gap:5px; }
   .faq { padding:18px; }
   .lead-copy { padding:24px 20px 0; }
-  .lead-card form { padding:20px; }
-  .form-row { grid-template-columns:1fr; }
+  .contact-panel { padding:20px; }
+  .contact-link { padding:15px; }
   .footer { flex-direction:column; gap:25px; text-align:center; }
   .footer > div:last-child { text-align:center; }
   .legal { flex-direction:column; align-items:center; gap:12px; }
